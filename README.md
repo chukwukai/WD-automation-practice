@@ -23,12 +23,7 @@ Follow these step-by-step instructions to get your development environment runni
 2. **Install dependencies**
    ```bash
    npm install
-   ```
-
-3. **Initialize Playwright**
-   Run the following command and follow the on-screen prompts to complete the setup:
-   ```bash
-   npm init playwright@latest
+   npx playwright install
    ```
 
 ## 🚀 Running Tests
