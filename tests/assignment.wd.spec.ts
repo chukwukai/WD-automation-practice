@@ -2,15 +2,14 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Walker Dunlop Tests', () => {
     test.beforeEach(async ({ page }) => {
-        await page.goto('/'); // This will use the baseURL defined in the config, which is https://suite.walkerdunlop.com
-        //await page.goto('https://suite.walkerdunlop.com/');
+        await page.goto('/'); 
     });
 
     test.afterEach(async ({ page }) => {
         await page.close();
     });
 
-   test('Verify a user can search for a property and validate the results displays', async ({ page }) => {
+   test('Verify a user can search for a property and validate the neighborhood information', async ({ page }) => {
         //await expect(page.locator('div[data-test="researchSection"]')).toBeVisible();
         await page.locator('input[data-test="searchInput"]').fill("North Carolina Musemum");
         await page.locator('div[data-test="propertyItem"]').filter({ hasText: /west building/i }).click();
@@ -22,7 +21,7 @@ test.describe('Walker Dunlop Tests', () => {
         await expect(neighborhoodCard).toHaveText('Neighborhood OverallA+');
     });
 
-    test('Verify a user search for the property name and save the property', async ({ page }) => {
+    test('Verify a user can save the property to the dashboard', async ({ page }) => {
         await page.locator('input[data-test="searchInput"]').fill("7272 Wisconsin Ave, Bethesda, MD, USA");
         await page.locator('div[data-test="propertyItem"]').first().click()
         await expect(page.locator('h2[data-test="propertyName"]')).toHaveText('7272 Wisconsin Ave');
@@ -34,7 +33,7 @@ test.describe('Walker Dunlop Tests', () => {
 
 
 
-  test('Verify a user can login and view their saved properties', async ({ page }) => {
+  test('Verify a user can login and view their saved properties using mock data', async ({ page }) => {
         //await expect(page.locator('div[data-test="researchSection"]')).toBeVisible();
         const jsonResponse = [
     {
