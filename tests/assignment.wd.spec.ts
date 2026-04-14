@@ -10,7 +10,6 @@ test.describe('Walker Dunlop Tests', () => {
     });
 
    test('Verify a user can search for a property and validate the neighborhood information', async ({ page }) => {
-        //await expect(page.locator('div[data-test="researchSection"]')).toBeVisible();
         await page.locator('input[data-test="searchInput"]').fill("North Carolina Musemum");
         await page.locator('div[data-test="propertyItem"]').filter({ hasText: /west building/i }).click();
         await expect(page.locator('img[data-test="propertyImage"]')).toHaveAttribute('alt', 'North Carolina Museum of Art West Building');
@@ -34,7 +33,6 @@ test.describe('Walker Dunlop Tests', () => {
 
 
   test('Verify a user can login and view their saved properties using mock data', async ({ page }) => {
-        //await expect(page.locator('div[data-test="researchSection"]')).toBeVisible();
         const jsonResponse = [
     {
         "property_id": "457edfd2-f0a2-4803-a472-ec10347a51e5",
@@ -75,8 +73,8 @@ test.describe('Walker Dunlop Tests', () => {
             await route.fulfill({ json: jsonResponse });
         });
         await page.getByRole('button', { name: 'Login' }).click();
-        await page.locator('input[data-test="userEmail"]').fill('thechuks09@yahoo.com');
-        await page.locator('input[data-test="userPassword"]').fill('PassTest1234!');
+        await page.locator('input[data-test="userEmail"]').fill(process.env.TEST_USER_EMAIL!);
+        await page.locator('input[data-test="userPassword"]').fill(process.env.TEST_USER_PASSWORD!);
         await page.locator('button[data-test="signInButton"]').click();
         await page.locator('form[name="loginForm"]').waitFor({ state: 'hidden' });
         await page.locator('button[data-test="landingPageGoToMyDashboard"]').click();
