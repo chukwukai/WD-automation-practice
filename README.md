@@ -47,5 +47,9 @@ You can run the tests using the following commands:
   ```bash
   npx playwright test tests/example.spec.ts
   ```
+* **Test Report**:
+  ```bash
+  npx playwright show-report
+  ```
 
 ---
